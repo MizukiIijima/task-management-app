@@ -5,14 +5,14 @@ const db = new sqlite3.Database('db');
 // タスクテーブル作成
 db.run(
     `CREATE TABLE IF NOT EXISTS tasks (
-        id          TEXT PRIMARY KEY NOT NULL,
+        id           TEXT PRIMARY KEY NOT NULL,
         project_name TEXT NOT NULL,
         task_name    TEXT NOT NULL,
-        content     TEXT NOT NULL,
-        person      TEXT NOT NULL,
-        status      TEXT NOT NULL CHECK(status = "未着手" or status = "着手中" or status = "完了"),
-        progress    INTEGER NOT NULL,
-        date        DATE
+        content      TEXT NOT NULL,
+        person       TEXT NOT NULL,
+        status       TEXT NOT NULL CHECK(status = "未着手" or status = "着手中" or status = "完了"),
+        progress     INTEGER NOT NULL,
+        date         DATE
     )`
 ), (err) => {
     if(err){
