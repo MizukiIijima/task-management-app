@@ -1,0 +1,11 @@
+h1{
+    font-size: 1.125rem;
+    width: 80%;
+    min-width: 20.625rem;
+    margin: auto;
+}
+.projectForm{
+    width: 80%;
+    min-width: 20.625rem;
+    margin: 1.5rem auto 0 auto;
+}
