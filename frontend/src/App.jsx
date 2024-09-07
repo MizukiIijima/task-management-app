@@ -12,7 +12,8 @@ function App() {
             <Header />
             <ul>
                 <li><Link to="/login">ログイン画面</Link></li>
-                <li><Link to="/register">タスク登録</Link></li>
+                <li><Link to="/project-register">プロジェクト作成</Link></li>
+                <li><Link to="/task-register">タスク登録</Link></li>
             </ul>
             <Outlet />
         </>
