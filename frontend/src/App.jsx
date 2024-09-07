@@ -1,16 +1,22 @@
-import { useState } from 'react'
-import './App.css'
-import { Header } from './components/Header'
+import { Link, Outlet } from "react-router-dom";
+import { useState } from "react";
+import './App.css';
+import { Header } from "./components/Header";
+// import { AppRoutes } from './routes/AppRoutes.jsx';
 
 function App() {
-
     const [isLogin, setIsLogin] = useState(false);
 
     return (
         <>
-            <Header></Header>
+            <Header />
+            <ul>
+                <li><Link to="/login">ログイン画面</Link></li>
+                <li><Link to="/register">タスク登録</Link></li>
+            </ul>
+            <Outlet />
         </>
-    )
+    );
 }
 
-export default App
+export default App;
