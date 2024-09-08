@@ -1,4 +1,25 @@
+.topPage{
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+}
 .message{
     width: fit-content;
     margin: auto;
+}
+.link-button {
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-top: 1.5rem;
+    padding: 10px 0;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.link-button:hover {
+    background-color: #0056b3;
 }
