@@ -3,3 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+.wrapper{
+    display: flex;
+    min-height: calc(100vh - 5.625rem);
+}

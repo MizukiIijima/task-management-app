@@ -9,3 +9,8 @@ h1{
     min-width: 20.625rem;
     margin: 1.5rem auto 0 auto;
 }
+.projectWrapper{
+    flex: 8;
+    height: fit-content;
+    margin-top: 5rem;
+}

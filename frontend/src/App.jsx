@@ -2,6 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import './App.css';
 import { Header } from "./components/Header";
+import { Sidebar } from "./components/Sidebar";
 // import { AppRoutes } from './routes/AppRoutes.jsx';
 
 function App() {
@@ -15,7 +16,10 @@ function App() {
                 <li><Link to="/project-register">プロジェクト作成</Link></li>
                 <li><Link to="/task-register">タスク登録</Link></li>
             </ul>
-            <Outlet />
+            <div className="wrapper">
+                <Sidebar />
+                <Outlet />
+            </div>
         </>
     );
 }
