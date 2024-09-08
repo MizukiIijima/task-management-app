@@ -1,11 +1,30 @@
 const express = require('express');
-
+const path = require('path');
+const bodyParser = require('body-parser');
+const db = require('./database/initDb');
 const app = express();
 
-app.get('/', (req) => {
-    res.send('ok')
+app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+    res.send('ok');
 });
 
-app.listen(3000, () => {
-    console.log('OK')
-})
+app.post('/projects', (req, res) => {
+
+    const { project_name, project_detail } = req.body;
+    const query = `INSERT INTO project (project_name, project_detail) VALUES (?, ?)`;
+
+    db.run(query, [project_name, project_detail], (err) => {
+        if (err) {
+            res.status(500).json({ error: 'データベースエラーが発生しました。' });
+        } else {
+            res.status(201).json({ message: '正常に登録されました' });
+        }
+    });
+});
+
+
+app.listen(5000, () => {
+    console.log('サーバーが起動されました。');
+});

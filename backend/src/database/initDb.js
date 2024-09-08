@@ -43,7 +43,7 @@ db.run(
     `CREATE TABLE IF NOT EXISTS project (
         project_id     INTEGER PRIMARY KEY NOT NULL,
         project_name   TEXT NOT NULL,
-        project_detail TEXT,
+        project_detail TEXT
     )`
 ), (err) => {
     if(err){
@@ -52,6 +52,5 @@ db.run(
         console.log('project table created or already exists.');
     }
 }
-
 
 module.exports = db;
