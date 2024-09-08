@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { TextField, Button } from "@mui/material";
+import { useState } from "react";
 import "./ProjectRegister.css";
-import { useEffect, useState } from "react";
 
 export const ProjectRegister = () => {
 
@@ -9,7 +9,6 @@ export const ProjectRegister = () => {
     const [message, setMessage] = useState('');
     
     const projectSubmit = async () => {
-        // setProjectName(getValues('project_name'));
         const project_name = getValues('project_name');
         const project_detail = getValues('project_detail');
 
@@ -21,7 +20,6 @@ export const ProjectRegister = () => {
             body: JSON.stringify({ project_name, project_detail }),
         });
 
-        const result = (await response).json();
         if(response.ok){
             setMessage('プロジェクトの登録が完了しました。');
         } else {
@@ -53,7 +51,7 @@ export const ProjectRegister = () => {
                     sx={{ backgroundColor: "#37C300", width: "12rem", margin: "auto", display: "block" }}
                 >プロジェクトを作成</Button>
             </form>
-            {message && <p>{message}</p>}
+            {message && <p className="resultMessage">{message}</p>}
         </div>
     )
 

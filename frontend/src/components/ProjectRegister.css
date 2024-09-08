@@ -14,3 +14,7 @@ h1{
     height: fit-content;
     margin-top: 5rem;
 }
+.resultMessage{
+    text-align: center;
+    margin: 3rem;
+}
