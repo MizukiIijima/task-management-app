@@ -25,24 +25,25 @@ db.run(
 }
 
 // ユーザーテーブル作成
-db.run(
-    `CREATE TABLE IF NOT EXISTS user (
-        user_name TEXT PRIMARY KEY NOT NULL,
-        password  TEXT NOT NULL CHECK(LENGTH(password) >= 4)
-    )`
-), (err) => {
-    if(err){
-        console.error(err.message);
-    } else {
-        console.log('user table created or already exists.');
-    }
-}
+// db.run(
+//     `CREATE TABLE IF NOT EXISTS user (
+//         user_name TEXT PRIMARY KEY NOT NULL,
+//         password  TEXT NOT NULL CHECK(LENGTH(password) >= 4)
+//     )`
+// ), (err) => {
+//     if(err){
+//         console.error(err.message);
+//     } else {
+//         console.log('user table created or already exists.');
+//     }
+// }
 
 // プロジェクトテーブル作成
 db.run(
     `CREATE TABLE IF NOT EXISTS project (
-        project_id   INTEGER PRIMARY KEY NOT NULL,
-        project_name TEXT NOT NULL
+        project_id     INTEGER PRIMARY KEY NOT NULL,
+        project_name   TEXT NOT NULL,
+        project_detail TEXT,
     )`
 ), (err) => {
     if(err){
