@@ -2,6 +2,20 @@ header{
     width: 100%;
     background-color: #005799;
     height: 5.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+.logo{
+    display: block;
+    width: 3rem;
+    height: auto;
+    margin-left: 10%;
+}
+.logo img{
+    width: 100%;
+    object-fit: contain;
 }
 .searchInput{
     background-color: inherit;
@@ -25,9 +39,9 @@ header{
     border: none;
 }
 .taskSearch{
-    width: 30rem;
-    margin-left: auto;
+    margin-right: 2rem;
     padding: 1.5rem 0;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
