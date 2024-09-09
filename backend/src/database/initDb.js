@@ -41,7 +41,7 @@ db.run(
 // プロジェクトテーブル作成
 db.run(
     `CREATE TABLE IF NOT EXISTS project (
-        project_id     INTEGER PRIMARY KEY NOT NULL,
+        project_id     INTEGER PRIMARY KEY AUTOINCREMENT,
         project_name   TEXT NOT NULL,
         project_detail TEXT
     )`

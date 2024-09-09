@@ -10,16 +10,27 @@ app.get('/', (req, res) => {
     res.send('ok');
 });
 
+app.get('/projects', (req, res) => {
+    const selectProjectsName = `SELECT project_name, project_id, project_detail FROM project`;
+    db.all(selectProjectsName, (err, rows) => {
+        if(err) {
+            res.status(500).json({ error: 'データベースエラーが発生しました。'});
+        } else {
+            res.status(200).json(rows);
+        }
+    })
+});
+
 app.post('/projects', (req, res) => {
 
-    const { project_name, project_detail } = req.body;
-    const query = `INSERT INTO project (project_name, project_detail) VALUES (?, ?)`;
+    const { project_name, project_id , project_detail } = req.body;
+    const query = `INSERT INTO project (project_name, project_detail) VALUES (?,?)`;
 
     db.run(query, [project_name, project_detail], (err) => {
         if (err) {
             res.status(500).json({ error: 'データベースエラーが発生しました。' });
         } else {
-            res.status(201).json({ message: '正常に登録されました' });
+            res.status(201).json({ message: '正常に登録されました。' });
         }
     });
 });
