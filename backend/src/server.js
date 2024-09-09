@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.send('ok');
 });
 
-app.get('/projects', (req, res) => {
+app.get('/api/projects', (req, res) => {
     const selectProjectsName = `SELECT project_name, project_id, project_detail FROM project`;
     db.all(selectProjectsName, (err, rows) => {
         if(err) {
@@ -21,7 +21,7 @@ app.get('/projects', (req, res) => {
     })
 });
 
-app.post('/projects', (req, res) => {
+app.post('/api/projects', (req, res) => {
 
     const { project_name, project_id , project_detail } = req.body;
     const query = `INSERT INTO project (project_name, project_detail) VALUES (?,?)`;
