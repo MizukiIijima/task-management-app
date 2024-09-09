@@ -6,8 +6,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/projects': {
-        target: 'http://localhost:5000',  // バックエンドのポート
+      // APIリクエストのみをバックエンドにフォワード
+      '/api': {
+        target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false,
       },

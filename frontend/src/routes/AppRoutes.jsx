@@ -10,7 +10,7 @@ export const AppRoutes = createBrowserRouter(
         <Route path="/" element={<App />} >
             <Route index element={<TopPage />} />
             <Route path="task-register" element={<TaskRegister />} />
-            <Route path="project-register" element={<ProjectRegister />} />
+            <Route path="projects/register" element={<ProjectRegister />} />
             <Route path="login" element={<Login />} />
         </Route>
     )

@@ -7,18 +7,16 @@ export const Sidebar = ({ projects = [] }) => {
         <div className="sidebar">
             <div className="sidebarHead">
                 <p className="sidebarTitle">Project</p>
-                <Link to="/project-register">
+                <Link to="/projects/register">
                     <AddCircleOutlineOutlinedIcon
                         sx={{ backgroundColor: "inherit", color: "white" }}
                     />
                 </Link>
             </div>
             <ul className='sidebarProject'>
-                {
-                    projects.map((project) => (
-                        <li key={project.id}>{project.project_name}</li>
-                    ))
-                }
+                {projects.map((project) => (
+                    <li key={project.id}>{project.project_name}</li>
+                ))}
             </ul>
         </div>
     );

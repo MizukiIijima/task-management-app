@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { TextField, Button } from "@mui/material";
+import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
 import "./ProjectRegister.css";
 
@@ -12,7 +13,7 @@ export const ProjectRegister = () => {
         const project_name = getValues('project_name');
         const project_detail = getValues('project_detail');
 
-        const response = await fetch('/projects', {
+        const response = await fetch('/api/projects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

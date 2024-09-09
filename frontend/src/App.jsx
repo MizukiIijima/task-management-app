@@ -7,12 +7,12 @@ import { Sidebar } from "./components/Sidebar";
 function App() {
 
     //ID、プロジェクト名、プロジェクト詳細
-    const [projects, setProjects] = useState();
+    const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         const fetchProjectsName = async () => {
             try {
-                const response = await fetch('/projects');
+                const response = await fetch('/api/projects');
                 if(response.ok){
                     const data = await response.json();
                     setProjects(data);

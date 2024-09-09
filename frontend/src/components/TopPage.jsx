@@ -7,7 +7,7 @@ export const TopPage = () => {
     return(
         <div className="topPage">
             <p className="message">まずはプロジェクトを作成しましょう！</p>
-            <Link to="/project-register" className="link-button">
+            <Link to="/projects/register" className="link-button">
                 プロジェクト作成
             </Link>
         </div>
