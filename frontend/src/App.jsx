@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './App.css';
 import { Header } from "./components/Header";
@@ -26,11 +26,6 @@ function App() {
 
         fetchProjectsName();
     }, []);
-
-    
-    useEffect(() => {
-        console.log(projects)
-    }, [projects]);
 
     return (
         <>
