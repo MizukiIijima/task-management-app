@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useParams, useOutletContext } from "react-router-dom";
 import "./TaskRegister.css";
@@ -7,18 +8,40 @@ export const TaskRegister = () => {
 
     const { id } = useParams();
     const { projects } = useOutletContext();
-    const { register, handleSubmit } = useForm();
+    const [ text, setText ] = useState('');
+    const { register, handleSubmit, getValues } = useForm();
     const project = projects.find(project => project.project_id === parseInt(id,10));
 
     //タスクを登録する
-    const taskSubmit = () => {
-        alert('OK')
+    const taskSubmit = async () => {
+        
+        const project_name = project.project_name;
+        const task_name = getValues('task_name');
+        const content  = getValues('content');
+        const person   = getValues('person');
+        const status   = '未着手';
+        const progress = 0;
+        const date     = getValues('date');
+
+        const response = await fetch('/api/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ project_name, task_name, content, person, status, progress, date } )
+        });
+
+        if(response.ok) {
+            setText('正常に登録されました。');
+        } else {
+            setText('登録に失敗しました。');
+        }
     }
 
     return(
         <div className="taskRegister">
             <h1 className="taskRegister-head">{project.project_name}</h1>
-            <form onSubmit={taskSubmit}>
+            <form onSubmit={handleSubmit(taskSubmit)}>
                 <TextField 
                     label="タスク名"
                     variant="standard"
@@ -62,6 +85,7 @@ export const TaskRegister = () => {
                     タスクを作成
                 </Button>
             </form>
+            {text && <p>{text}</p>}
         </div>
     )
 }
