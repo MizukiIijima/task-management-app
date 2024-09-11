@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
     res.send('ok');
 });
 
+//プロジェクトの取得
 app.get('/api/projects', (req, res) => {
     const selectProjectsName = `SELECT project_name, project_id, project_detail FROM project`;
     db.all(selectProjectsName, (err, rows) => {
@@ -21,6 +22,7 @@ app.get('/api/projects', (req, res) => {
     })
 });
 
+//プロジェクトの登録
 app.post('/api/projects', (req, res) => {
 
     const { project_name, project_id , project_detail } = req.body;
@@ -35,6 +37,24 @@ app.post('/api/projects', (req, res) => {
     });
 });
 
+//タスク登録
+app.post('/api/tasks', (req, res) => {
+
+    const { project_name, task_name, content, person, status, progress, date } = req.body;
+    const taskRegisterQuery = `INSERT INTO tasks (project_name, task_name, content, person, status, progress, date ) VALUES(?,?,?,?,?,?,?)`;
+    console.log('OK');
+
+    db.run(taskRegisterQuery, [project_name, task_name, content, person, status, progress, date ], (err) => {
+        if(err) {
+            res.status(500).json({ error: 'データベースエラーが発生しました。'});
+            console.error(err.message);
+        } else {
+            res.status(201).json({ message: '正常に登録されました。'});
+            console.log('dbok');
+        }
+    });
+    
+});
 
 app.listen(5000, () => {
     console.log('サーバーが起動されました。');

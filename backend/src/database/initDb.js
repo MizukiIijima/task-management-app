@@ -7,7 +7,7 @@ const db = new sqlite3.Database(dbPath);
 // タスクテーブル作成
 db.run(
     `CREATE TABLE IF NOT EXISTS tasks (
-        id           TEXT PRIMARY KEY NOT NULL,
+        id           INTEGER PRIMARY KEY AUTOINCREMENT,
         project_name TEXT NOT NULL,
         task_name    TEXT NOT NULL,
         content      TEXT NOT NULL,
