@@ -30,7 +30,7 @@ export const ProjectRegister = () => {
 
     return(
         <div className="projectWrapper">
-            <h1>プロジェクトを登録</h1>
+            <h1 className="projectWrapper-head">プロジェクトを登録</h1>
             <form onSubmit={handleSubmit(projectSubmit)} className="projectForm">
                 <TextField
                     label="プロジェクト名"
