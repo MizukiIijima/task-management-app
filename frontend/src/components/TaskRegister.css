@@ -1,0 +1,13 @@
+.taskRegister{
+    flex: 1;
+    padding: 5.7rem 12% 0 12%;
+}
+.taskRegister-head{
+    font-size: 1.8rem;
+}
+
+@media (max-width: 900px){
+    .taskRegister{
+        padding: 4rem 6% 0 6%;
+    }
+}
