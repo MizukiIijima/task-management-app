@@ -1,0 +1,9 @@
+.projectArea{
+    flex: 1;
+    padding: 3.125rem 5rem;
+}
+.projectArea-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
