@@ -15,7 +15,7 @@ export const TaskRegister = () => {
     //タスクを登録する
     const taskSubmit = async () => {
         
-        const project_name = project.project_name;
+        const project_id = project.project_id;
         const task_name = getValues('task_name');
         const content  = getValues('content');
         const person   = getValues('person');
@@ -28,7 +28,7 @@ export const TaskRegister = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ project_name, task_name, content, person, status, progress, date } )
+            body: JSON.stringify({ project_id, task_name, content, person, status, progress, date } )
         });
 
         if(response.ok) {
