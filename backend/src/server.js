@@ -37,20 +37,38 @@ app.post('/api/projects', (req, res) => {
     });
 });
 
-//タスク登録
-app.post('/api/tasks', (req, res) => {
+//タスクの取得
+app.get('/api/projects/detail/:id', (req, res) => {
+    
+    const projectId = req.params.id;
+    console.log(projectId)
+    const getTasksQuery = `SELECT * FROM tasks WHERE project_id = ?`;
 
-    const { project_name, task_name, content, person, status, progress, date } = req.body;
-    const taskRegisterQuery = `INSERT INTO tasks (project_name, task_name, content, person, status, progress, date ) VALUES(?,?,?,?,?,?,?)`;
-
-    db.run(taskRegisterQuery, [project_name, task_name, content, person, status, progress, date ], (err) => {
+    db.all(getTasksQuery, [projectId], (err, rows) => {
         if(err) {
-            res.status(500).json({ error: 'データベースエラーが発生しました。'});
+            res.status(500).json({ error: 'データベースエラーが発生しました。' });
+            console.error(err);
         } else {
-            res.status(201).json({ message: '正常に登録されました。'});
+            res.status(200).json({ tasks: rows });
+            console.log(rows)
         }
     });
-    
+});
+
+//タスク登録
+app.post('/api/tasks', (req, res) => {
+    const { project_id, task_name, content, person, status, progress, date } = req.body;
+
+    const taskRegisterQuery = `INSERT INTO tasks (project_id, task_name, content, person, status, progress, date) VALUES(?,?,?,?,?,?,?)`;
+
+    db.run(taskRegisterQuery, [project_id, task_name, content, person, status, progress, date], (err) => {
+        if (err) {
+            res.status(500).json({ error: 'データベースエラーが発生しました。' });
+            console.error(err);
+        } else {
+            res.status(201).json({ message: '正常に登録されました。' });
+        }
+    });
 });
 
 app.listen(5000, () => {
