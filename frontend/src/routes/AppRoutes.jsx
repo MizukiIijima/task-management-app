@@ -1,6 +1,5 @@
 import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { TaskRegister } from "../components/TaskRegister";
-import { Login } from "../components/Login";
 import { ProjectRegister } from "../components/ProjectRegister.jsx";
 import { TopPage } from "../components/TopPage";
 import { TaskDetail } from "../components/TaskDetail.jsx";
@@ -15,7 +14,6 @@ export const AppRoutes = createBrowserRouter(
             <Route path="tasks/detail/:id"   element={<TaskDetail />} />
             <Route path="projects/detail/:id" element={<ProjectDetail />} />
             <Route path="projects/register" element={<ProjectRegister />} />
-            <Route path="login" element={<Login />} />
         </Route>
     )
 );
