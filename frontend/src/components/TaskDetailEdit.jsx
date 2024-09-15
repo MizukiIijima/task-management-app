@@ -109,6 +109,7 @@ export const TaskDetailEdit = () => {
             <Select
                 variant="standard"
                 fullWidth
+                defaultValue={editTasks.tasks[0].status}
                 {...register('status')}
             >
                 <MenuItem value="">ステータスを選択</MenuItem>
