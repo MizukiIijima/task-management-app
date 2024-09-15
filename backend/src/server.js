@@ -124,9 +124,29 @@ app.post('/api/tasks/update/:id', (req, res) => {
                     res.status(500).json({ error: 'エラーが発生' });
                 } else {
                     console.log(rows);
-                    res.status(200).json(updatedTask);
+                    res.status(200).json(rows);
                 }
             });
+        }
+    });
+});
+
+//タスク削除
+app.delete('/api/tasks/delete/:id', (req, res) => {
+    const deleteId = req.params.id;
+    const deleteTaskQuery = `DELETE FROM tasks WHERE id = ?`;
+
+    db.run(deleteTaskQuery, [deleteId],  function(err) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).json({ error: 'タスクの削除に失敗しました。' });
+            return;
+        }
+
+        if (this.changes > 0) {
+            res.status(200).json({ message: 'タスクを削除しました。' });
+        } else {
+            res.status(404).json({ error: '指定されたIDのタスクが見つかりませんでした。' });
         }
     });
 });
