@@ -45,6 +45,10 @@ export const TaskDetail = () => {
                             <p className="taskContent-person">{ task.person }</p>
                         </div>
                         <div className="taskContent-block">
+                            <h2>期限</h2>
+                            <p className="taskContent-date">{ task.date }</p>
+                        </div>
+                        <div className="taskContent-block">
                             <h2>ステータス</h2>
                             <p className="taskContent-status">{ task.status }</p>
                         </div>
@@ -53,8 +57,8 @@ export const TaskDetail = () => {
                             <p className="taskContent-progress">{ task.progress }</p>
                         </div>
                         <div className="taskContent-block">
-                            <h2>期限</h2>
-                            <p className="taskContent-date">{ task.date }</p>
+                            <h2>タスク内容</h2>
+                            <p className="taskContent-progress">{ task.content }</p>
                         </div>
                     </div>
                 ))}
