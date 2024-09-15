@@ -12,27 +12,32 @@ export const ProjectDetail = () => {
     const project = projects.find((project) => project.project_id === parseInt(id, 10));
     const { taskList, setTaskList } = useOutletContext();
 
-    const fetchProject = async () => {
-        
-        const response = await fetch(`/api/projects/detail/${project.project_id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-
-        if(response.ok){
-            const tasksdata = await response.json();
-            setTaskList(tasksdata);
-        } else {
-            console.error('NG');
-        }
-
-    }
-
     useEffect(() => {
-        fetchProject()
-    }, []);
+        const fetchProject = async () => {
+            setTaskList([]);
+        
+            const response = await fetch(`/api/projects/detail/${project.project_id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+    
+            if(response.ok){
+                const tasksdata = await response.json();
+                setTaskList(tasksdata);
+            } else {
+                console.error('NG');
+            }
+    
+        }
+        
+        fetchProject();
+    }, [id]);
+
+    // useEffect(() => {
+    //     fetchProject()
+    // }, []);
 
     return(
         <div className="projectArea">
