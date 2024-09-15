@@ -45,8 +45,6 @@ export const TaskDetailEdit = () => {
         const status    = getValues('status');
         const progress  = getValues('progress');
         const content   = getValues('content');
-
-        console.log(status)
         
         const response = await fetch(`/api/tasks/update/${id}`, {
             method: 'POST',
@@ -64,13 +62,25 @@ export const TaskDetailEdit = () => {
         }
     };
 
+    //削除ボタン押下時
+    const taskDeleteSubmit = async () => {
+        const response = await fetch(`/api/tasks/delete/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            alert('タスクを削除しました。');
+        } else {
+            alert('削除に失敗しました。');
+        }
+    };
+
     useEffect(() => {
         fetchTaskDetail();
     }, []);
-
-    useEffect(() => {
-        console.log(editTasks);
-    }, [editTasks]);
 
     return (
         <>
@@ -79,7 +89,7 @@ export const TaskDetailEdit = () => {
                 <img src={loading} alt="ローディング中gif" />
             </div>
         ) : (
-            <form onSubmit={handleSubmit(taskEditSubmit)} className="editForm">
+            <form onSubmit={handleSubmit(taskEditSubmit, taskDeleteSubmit)} className="editForm">
             <TextField
                 label="タスク名"
                 variant="standard"
@@ -109,7 +119,7 @@ export const TaskDetailEdit = () => {
             <Select
                 variant="standard"
                 fullWidth
-                defaultValue={editTasks.tasks[0].status}
+                defaultValue={editTasks.tasks ? editTasks.tasks[0].status : ""}
                 {...register('status')}
             >
                 <MenuItem value="">ステータスを選択</MenuItem>
@@ -154,7 +164,8 @@ export const TaskDetailEdit = () => {
             </Button>
             <Button
                 variant="outlined"
-                type="submit"
+                type="button"
+                onClick={taskDeleteSubmit}
                 color="error"
                 sx={{ width: '12rem', display: "block", margin: "1.5rem auto 0 auto" }}
             >

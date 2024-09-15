@@ -17,6 +17,9 @@
     padding: 1.75rem 1%;
     border-bottom: 1px solid #e0e0e0;
 }
+.projectArea-link{
+    text-decoration: none;
+}
 .projectArea-link:nth-child(odd){
     background-color: #FAFAFA;
     display: block;
