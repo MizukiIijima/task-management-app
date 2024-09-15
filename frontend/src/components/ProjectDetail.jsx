@@ -45,7 +45,6 @@ export const ProjectDetail = () => {
             { Object.keys(taskList).length !== 0 ? (
             <div className="projectArea-block">
                 <div className="projectArea-block__head">
-                    <p className="projectDetail-id">ID</p>
                     <p className="projectDetail-name">タスク名</p>
                     <p className="projectDetail-status">ステータス</p>
                     <p className="projectDetail-person">担当者</p>
@@ -54,7 +53,6 @@ export const ProjectDetail = () => {
                 {taskList.tasks.map((task) => (
                     <NavLink to={`/tasks/detail/${task.id}`} key={ task.id } className="projectArea-link">
                         <div className="projectArea-inner">
-                            <p className="projectArea-inner__id">{ task.id }</p>
                             <p className="projectArea-inner__name">{ task.task_name }</p>
                             <p className="projectArea-inner__status">{ task.status }</p>
                             <p className="projectArea-inner__person">{ task.person }</p>

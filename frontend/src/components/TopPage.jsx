@@ -18,7 +18,7 @@ export const TopPage = () => {
                     <h1>プロジェクト一覧</h1>
                     <div className="topPageProject">
                         {projects.map((project) => (
-                            <NavLink key={project.project_id} to={`/projects/detail/${project.project_id}`}>
+                            <NavLink key={project.project_id} to={`/projects/detail/${project.project_id}`} className="topPageProject-link">
                                 <h2>{project.project_name}</h2>
                             </NavLink>
                         ))}
