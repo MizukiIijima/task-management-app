@@ -1,4 +1,4 @@
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Select, MenuItem, InputLabel } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { json, useParams } from "react-router-dom";
@@ -24,9 +24,12 @@ export const TaskDetailEdit = () => {
                 task_name: taskData.tasks[0].task_name,
                 person: taskData.tasks[0].person,
                 date: taskData.tasks[0].date,
+                status: taskData.tasks[0].status,
+                progress: taskData.tasks[0].progress,
                 content: taskData.tasks[0].content,
             };
             reset(defaultValues);
+
             setEditTasks(taskData);
         } else {
             console.error('エラー');
@@ -39,14 +42,18 @@ export const TaskDetailEdit = () => {
         const task_name = getValues('task_name');
         const person    = getValues('person');
         const date      = getValues('date');
+        const status    = getValues('status');
+        const progress  = getValues('progress');
         const content   = getValues('content');
+
+        console.log(status)
         
         const response = await fetch(`/api/tasks/update/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ task_name, person, date, content }),
+            body: JSON.stringify({ task_name, person, date, status, progress, content }),
         });
 
         if(response.ok) {
@@ -97,6 +104,34 @@ export const TaskDetailEdit = () => {
                 fullWidth
                 sx={{ marginTop: "1.25rem" }}
                 {...register('date')}
+            />
+            <InputLabel sx={{ marginTop: "1.25rem" }}>ステータス</InputLabel>
+            <Select
+                variant="standard"
+                fullWidth
+                {...register('status')}
+            >
+                <MenuItem value="">ステータスを選択</MenuItem>
+                <MenuItem value={"未着手"}>未着手</MenuItem>
+                <MenuItem value={"着手中"}>着手中</MenuItem>
+                <MenuItem value={"完了"}>完了</MenuItem>
+            </Select>
+            <TextField
+                label="進捗度"
+                variant="standard"
+                fullWidth
+                sx={{ marginTop: "1.25rem" }}
+                {...register('progress', {
+                    min: {
+                        value: 0,
+                        message: '0以上で入力してください。'
+                    },
+                    max: {
+                        value: 100,
+                        message: '100以上で入力して下さい。'
+                    },
+                    valueAsNumber: true,
+                })}
             />
             <TextField
                 label="タスク内容"
