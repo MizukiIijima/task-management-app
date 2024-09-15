@@ -2,11 +2,12 @@ import { TextField, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import loading from './../assets/loading.gif';
 
 export const TaskDetailEdit = () => {
     const { id } = useParams();
     const { register, handleSubmit, reset } = useForm();
-    // const [editTasks, setEditTasks] = useState();
+    const [editTasks, setEditTasks] = useState({});
 
     // ページ読み込み時にタスク内容を取得してくる
     const fetchTaskDetail = async () => {
@@ -26,7 +27,7 @@ export const TaskDetailEdit = () => {
                 content: taskData.tasks[0].content,
             };
             reset(defaultValues);
-            // setEditTasks(taskData);
+            setEditTasks(taskData);
         } else {
             console.error('エラー');
         }
@@ -42,7 +43,13 @@ export const TaskDetailEdit = () => {
     }, []);
 
     return (
-        <form onSubmit={handleSubmit(taskEditSubmit)} className="editForm">
+        <>
+        {Object.keys(editTasks).length === 0 ? (
+            <div className="loadingBlock">
+                <img src={loading} alt="ローディング中gif" />
+            </div>
+        ) : (
+            <form onSubmit={handleSubmit(taskEditSubmit)} className="editForm">
             <TextField
                 label="タスク名"
                 variant="standard"
@@ -95,5 +102,7 @@ export const TaskDetailEdit = () => {
                 タスクを削除
             </Button>
         </form>
+        )}
+        </>
     );
 };

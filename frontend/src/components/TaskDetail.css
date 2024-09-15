@@ -19,3 +19,13 @@
     flex: 1;
     padding: 3.125rem 4%;
 }
+.loadingBlock{
+    flex: 1;
+    position: relative;
+}
+.loadingBlock img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
