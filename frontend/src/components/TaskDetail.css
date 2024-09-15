@@ -1,0 +1,21 @@
+.taskContent{
+    flex: 1;
+    padding: 3.125rem 4%;
+}
+.taskContent-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.taskContent-block{
+    margin-top: 0.9375rem;
+    padding-bottom: 0.9375rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+.taskContent-block p{
+    padding-top: 0.3125rem;
+}
+.editForm{
+    flex: 1;
+    padding: 3.125rem 4%;
+}
