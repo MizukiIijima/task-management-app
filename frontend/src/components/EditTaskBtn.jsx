@@ -10,7 +10,7 @@ export const EditTaskBtn = () => {
         <Button
             variant="contained"
             color="primary"
-            sx={{ width: "12rem" }}
+            sx={{ width: "12rem", lineHeight: "2.25rem" }}
             onClick={taskCreate}>
             タスクを修正する
         </Button>

@@ -58,7 +58,7 @@ export const TaskDetail = () => {
                         </div>
                     </div>
                 ))}
-                <Link to={`/tasks/edit/${id}`}>
+                <Link to={`/tasks/edit/${id}`} className="deleteTaskBtn">
                     <DeleteTaskBtn />
                 </Link>
             </div>
