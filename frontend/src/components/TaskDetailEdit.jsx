@@ -1,12 +1,12 @@
 import { TextField, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { json, useParams } from "react-router-dom";
 import loading from './../assets/loading.gif';
 
 export const TaskDetailEdit = () => {
     const { id } = useParams();
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, getValues, } = useForm();
     const [editTasks, setEditTasks] = useState({});
 
     // ページ読み込み時にタスク内容を取得してくる
@@ -34,13 +34,36 @@ export const TaskDetailEdit = () => {
     };
 
     // 修正ボタン押下時
-    const taskEditSubmit = async (data) => {
-        console.log('送信データ:', data);
+    const taskEditSubmit = async () => {
+
+        const task_name = getValues('task_name');
+        const person    = getValues('person');
+        const date      = getValues('date');
+        const content   = getValues('content');
+        
+        const response = await fetch(`/api/tasks/update/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ task_name, person, date, content }),
+        });
+
+        if(response.ok) {
+            const editData = await response.json();
+            setEditTasks(editData);
+        } else {
+            console.error('エラーが発生しました。');
+        }
     };
 
     useEffect(() => {
         fetchTaskDetail();
     }, []);
+
+    useEffect(() => {
+        console.log(editTasks);
+    }, [editTasks]);
 
     return (
         <>
