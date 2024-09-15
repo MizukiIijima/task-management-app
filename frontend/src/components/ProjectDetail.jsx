@@ -10,7 +10,7 @@ export const ProjectDetail = () => {
     const { projects } = useOutletContext();
 
     const project = projects.find((project) => project.project_id === parseInt(id, 10));
-    const [ taskList, setTaskList ] = useState([]);
+    const { taskList, setTaskList } = useOutletContext();
 
     const fetchProject = async () => {
         
@@ -52,7 +52,7 @@ export const ProjectDetail = () => {
                     <p className="projectDetail-date">期限</p>
                 </div>
                 {taskList.tasks.map((task) => (
-                    <NavLink to={`/tasks/detail/${task.id}`} key={ task.id }>
+                    <NavLink to={`/tasks/detail/${task.id}`} key={ task.id } className="projectArea-link">
                         <div className="projectArea-inner">
                             <p className="projectArea-inner__id">{ task.id }</p>
                             <p className="projectArea-inner__name">{ task.task_name }</p>
