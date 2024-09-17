@@ -22,6 +22,22 @@ app.get('/api/projects', (req, res) => {
     })
 });
 
+//プロジェクト編集
+app.get('/api/projects/edit/:id', (req, res) => {
+
+    const projectId = req.params.id;
+    const projectDetailQuery = `SELECT * FROM project WHERE project_id = ?`;
+
+    db.all(projectDetailQuery, [projectId], (err, rows) => {
+        if(err) {
+            console.error(err.message);
+            res.status(500).end;
+        } else {
+            res.status(200).json(rows);
+        }
+    })
+});
+
 //プロジェクトの登録
 app.post('/api/projects', (req, res) => {
 
