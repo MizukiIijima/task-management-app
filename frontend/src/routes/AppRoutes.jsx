@@ -6,6 +6,7 @@ import { TaskDetail } from "../components/TaskDetail.jsx";
 import App from  "../App.jsx";
 import { ProjectDetail } from "../components/ProjectDetail.jsx";
 import { TaskDetailEdit } from "../components/TaskDetailEdit.jsx";
+import { ProjectEdit } from "../components/ProjectEdit.jsx";
 
 export const AppRoutes = createBrowserRouter(
     createRoutesFromElements(
@@ -16,6 +17,7 @@ export const AppRoutes = createBrowserRouter(
             <Route path="tasks/edit/:id"     element={<TaskDetailEdit />} />
             <Route path="projects/detail/:id" element={<ProjectDetail />} />
             <Route path="projects/register" element={<ProjectRegister />} />
+            <Route path="projects/edit/:id" element={<ProjectEdit />} />
         </Route>
     )
 );
