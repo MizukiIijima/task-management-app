@@ -43,32 +43,42 @@ export const ProjectEdit = () => {
         fetchProject();
     }, []);
 
-    return(
+    return (
         <div className="projectWrapper">
-            {console.log(editProject)}
-            <h1 className="projectWrapper-head">プロジェクトを修正</h1>
-            <form onSubmit={handleSubmit(projectEditSubmit)} className="projectForm">
-                <TextField
-                    label="プロジェクト名"
-                    fullWidth
-                    sx={{ display: "block", marginBottom: "1.875rem", }}
-                    defaultValue={editProject.project_name ? editProject.project_name : ""}
-                    {...register('project_name',{
-                        required: '必須項目です。'
-                    })}
-                />
-                <TextField
-                    label="タスク内容"
-                    multiline
-                    rows={10}
-                    fullWidth
-                    sx={{ display: "block", marginBottom: "4.125rem" }}
-                    {...register('project_detail')}
-                />
-                <Button variant="contained" type="submit"
-                    sx={{ backgroundColor: "#37C300", width: "12rem", margin: "auto", display: "block" }}
-                >プロジェクトを修正</Button>
-            </form>
+            {
+                Object.keys(editProject).length > 0 ? (
+                    <>
+                        <h1 className="projectWrapper-head">プロジェクトを修正</h1>
+                        <form onSubmit={handleSubmit(projectEditSubmit)} className="projectForm">
+                            <TextField
+                                label="プロジェクト名"
+                                fullWidth
+                                sx={{ display: "block", marginBottom: "1.875rem" }}
+                                defaultValue={editProject.project_name}
+                                {...register('project_name', {
+                                    required: '必須項目です。'
+                                })}
+                            />
+                            <TextField
+                                label="タスク内容"
+                                multiline
+                                rows={10}
+                                fullWidth
+                                sx={{ display: "block", marginBottom: "4.125rem" }}
+                                defaultValue={editProject.project_detail}
+                                {...register('project_detail')}
+                            />
+                            <Button variant="contained" type="submit"
+                                sx={{ backgroundColor: "#37C300", width: "12rem", margin: "auto", display: "block" }}
+                            >
+                                プロジェクトを修正
+                            </Button>
+                        </form>
+                    </>
+                ) : (
+                    <p>ローディング中です</p>
+                )
+            }
         </div>
     )
 }
