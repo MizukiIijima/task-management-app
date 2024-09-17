@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useOutletContext, Link, NavLink } from "react-router-dom";
 import { CreateTaskBtn } from "./CreateTaskBtn";
+import { EditProjectBtn } from "./EditProjectBtn";
 import "./ProjectDetail.css";
 
 export const ProjectDetail = () => {
     const { id } = useParams();
-    const { projects, taskList, setTaskList } = useOutletContext();
+    const { projects, taskList, setTaskList, projectId, setProjectId } = useOutletContext();
 
     const project = projects.find((project) => project.project_id === parseInt(id, 10));
 
@@ -29,7 +30,15 @@ export const ProjectDetail = () => {
             };
             fetchProject();
         }
+
     }, [id, project, setTaskList]);
+
+    useEffect(() => {
+        setProjectId(id);
+        // console.log(`id:${id}`);
+        // console.log(`projectId:${projectId}`);
+        // console.log(projects)
+    }, [id]);
 
     if (!project) {
         return <p>プロジェクトを読み込んでいます...</p>;
@@ -43,6 +52,7 @@ export const ProjectDetail = () => {
                     <CreateTaskBtn project={project} />
                 </NavLink>
             </div>
+            <>
             {taskList.tasks && taskList.tasks.length > 0 ? (
                 <div className="projectArea-block">
                     <div className="projectArea-block__head">
@@ -65,10 +75,14 @@ export const ProjectDetail = () => {
                             </div>
                         </NavLink>
                     ))}
+                    <Link to={`/projects/edit/${projectId}`} className="editTaskBtn">
+                        <EditProjectBtn />
+                    </Link>
                 </div>
             ) : (
                 <p className="notaskMessage">タスクがありません。</p>
             )}
+            </>
         </div>
     );
 }
